@@ -22,7 +22,12 @@
 
 <div class="card" style="padding: 10px; ">
 
-    <div class="card-header" style="text-align: center" > <h4 style ="padding : 5px; border: 2px solid grey;border-radius: 5px; color: #575757;text-align: center;width: 40%;margin: auto; margin-top: 10px;margin-bottom: 10px">Liste des groupes présents en BD</h4></div>
+    <div class="card-header" style="text-align: center" >
+        <h4 style ="padding : 5px; border: 2px solid grey;border-radius: 5px; color: #575757;text-align: center;width: 40%;margin: auto; margin-top: 10px;margin-bottom: 10px">Liste des groupes présents en BD</h4>
+        <div class="alert alert-danger" role="alert" style="margin-top: 10px">
+            Si vous supprimez le groupe, les modules et les étudiants seront aussi supprimés car lors de leurs créations chacun est associés à un groupe
+        </div>
+    </div>
     <!-- tableau de groupes  -->
     <table class="table table-striped ">
         <thead class="table-secondary">

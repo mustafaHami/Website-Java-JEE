@@ -80,6 +80,10 @@
             <param-name>urlDetailsAbsences</param-name>
             <param-value>/WEB-INF/JSP/detailsAbsences.jsp</param-value>
         </init-param>
+        <init-param>
+            <param-name>urlPageErreur</param-name>
+            <param-value>/WEB-INF/JSP/pageErreur.jsp</param-value>
+        </init-param>
     </servlet>
 
     <!-- Mapping URL/Servlet -->

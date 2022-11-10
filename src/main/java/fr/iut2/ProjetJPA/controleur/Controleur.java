@@ -43,6 +43,7 @@ public class Controleur extends HttpServlet {
     private String urlAjoutNote;
     private String urlAbsences;
     private String urlDetailsAbsences;
+    private String urlPageErreur;
     // INIT
     @Override
     public void init() throws ServletException {
@@ -60,6 +61,7 @@ public class Controleur extends HttpServlet {
         urlAjoutNote = getServletConfig().getInitParameter("urlAjoutNote");
         urlAbsences = getServletConfig().getInitParameter("urlAbsences");
         urlDetailsAbsences = getServletConfig().getInitParameter("urlDetailsAbsences");
+        urlPageErreur = getServletConfig().getInitParameter("urlPageErreur");
         // Création de la factory permettant la création d'EntityManager
         // (gestion des transactions)
         GestionFactory.open();
@@ -138,10 +140,8 @@ public class Controleur extends HttpServlet {
             doModifGroupe(request,response);
         } else if(action.equals("/ajoutgroupe")) {
             doCreateGroupe(request,response);
-
         }else if (action.equals("/ficheetudiant")) {
             doFicheEtudiant(request, response);
-
         } else if (action.equals("/ajoutetudiant")) {
             doCreateEtudiant(request, response);
 
@@ -386,6 +386,9 @@ public class Controleur extends HttpServlet {
     private void doDeleteEtudiant(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int idEtudiant = Integer.valueOf(request.getParameter("id"));
+
+        List<Note> allNote = EtudiantDAO.retrieveById(idEtudiant).getNote();
+        NoteDAO.removeNoteEtudiant(EtudiantDAO.retrieveById(idEtudiant));
         EtudiantDAO.remove(idEtudiant);
         doEtudiants(request,response);
     }
@@ -488,14 +491,21 @@ public class Controleur extends HttpServlet {
         float val = 0;
         Module module;
         Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
-        // si ajout == vrai, cela signifie que la personne à ajouter une note
+        // si ajout == vrai, cela signifie que la personne à ajoutée une note
         // si ajout == faux, cela signifie que la personne veut accéder à l'interface d'ajout une note
         if(ajout){
             val = Float.valueOf(request.getParameter("valeur"));
-            idModule = Integer.valueOf(request.getParameter("idModule"));
-            module = ModuleDAO.retrieveById(idModule);
-            NoteDAO.create(val,etudiant,module);
-            doFicheEtudiant(request,response);
+            if(val < 0 || val > 20){
+                request.setAttribute("erreur","note");
+                request.setAttribute("content",urlPageErreur);
+                loadJSP(urlLayout,request,response);
+            }else{
+                idModule = Integer.valueOf(request.getParameter("idModule"));
+                module = ModuleDAO.retrieveById(idModule);
+                NoteDAO.create(val,etudiant,module);
+                doFicheEtudiant(request,response);
+            }
+
         }else{
             request.setAttribute("etudiant",etudiant);
             request.setAttribute("content",urlAjoutNote);

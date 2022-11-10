@@ -51,7 +51,6 @@
                     <% for (Module module : etudiant.getGroupe().getModules()) {%>
 
                     <tr>
-
                         <td><%=module.getLibelle()%></td>
 
                         <% for (Note note : module.getNote()) {
@@ -106,7 +105,7 @@
                 </div>
             </div>
         <div class="alert alert-danger" role="alert" style="margin-top: 10px">
-            Si vous changer le groupe de l'étudiant toutes ses notes de l'ancien groupe seront supprimées
+            Si vous changez le groupe de l'étudiant toutes ses notes de l'ancien groupe seront supprimées
         </div>
         <% } %>
 
