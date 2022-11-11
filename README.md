@@ -1,5 +1,5 @@
 # My Java(JEE) Project
-#### It is a website developed in  Java(JEE), HTML, Css and Bootstrap. I realized this project during my licence.The important part of this project is the back-end part realized with java(jee). 
+#### It is a website developed in  Java(JEE), HTML, Css and Bootstrap. I realized this project during my licence. The important part of this project is the back-end part realized with Java(JEE). 
 ###### :warning: **Information** : To run this project, you need a servlet container (example: Tomcat, glasfish or other) and you need to specify the path of the database file in the persistence.xml file. The database file 'ProjetJPA.sql' (located in the BD folder)
 
 - <sub>✅ View students, groups and modules </sub>
