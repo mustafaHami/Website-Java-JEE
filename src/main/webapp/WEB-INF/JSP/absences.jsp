@@ -77,11 +77,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="date">Example textarea</label>
+                    <label for="date">Date d'absence</label>
                     <input type="date" id="date" name="date" value = "" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Example textarea</label>
+                    <label for="description">Modif d'absence</label>
                     <input type="text" class="form-control" name="description" id="description"  style="border: 1px solid grey" value="" required/>
 
                 </div>
